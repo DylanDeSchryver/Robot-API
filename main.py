@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+qfrom flask import Flask, request, jsonify
 from adafruit_motorkit import MotorKit
 import time
 
@@ -8,6 +8,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return '''
+    /* initialize html*/
+    
             <!DOCTYPE html>
         <html lang="en" dir="ltr">
           <head>
@@ -15,6 +17,8 @@ def index():
             <title>Control Panel</title>
           </head>
           <style>
+          /* CSS */
+          /* Aligns text*/
     h1
 {text-align: center;}
 h2
@@ -25,100 +29,20 @@ button
 {text-align: center;}
 p
 {text-align: center; font-size: large;}
+ /* Sets background and text color*/
 body
   {background-color:white;
      color: black;}
-
-.dark-mode {
-  background-color: black;
-  color: white;
-}
-
-
-
-  .tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-  }
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-  }
-  .tab button:hover {
-    background-color: #ddd;
-  }
-  .tab button.active {
-    background-color: #ccc;
-  }
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-  }
-.cool{float: right;}
-.col{float: left;}
+ /* Sets the default table color to white*/
 table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
 }
-figcaption{text-align: center;}
+
 h4{text-align: center;}
-figure {
-  border: 1px #cccccc solid;
-  padding: 4px;
-  margin: auto;
-}
 
-figcaption {
-  background-color: black;
-  color: white;
-  font-style: italic;
-  padding: 2px;
-  text-align: center;
-}
-.nice {
-  text-align: center;
-  list-style-position: inside;
-}
-.po{font-size: small; color: red;}
-.slidecontainer {
-  width: 100%; /* Width of the outside container */
-}
 
-/* The slider itself */
-.slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
-  appearance: none;
-  width: 90%; /* Full-width */
-  height: 5px; /* Specified height */
-  border-radius: 5px;
-  background: #d3d3d3; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
-}
 
-/* Mouse-over effects */
-.slider:hover {
-  opacity: 1; /* Fully shown on mouse-over */
-}
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  border-radius: 50%;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #04AA6D; /* Green background */
-  cursor: pointer; /* Cursor on hover */
-}
 
 </style>
         <script>
@@ -138,41 +62,52 @@ figcaption {
           <script>
               var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
-output.innerHTML = slider.value; // Display the default slider value
 
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
           </script>
 
 
-          <body id="jeff">
+          <body>
+          /* creates 2x2 table*/
 <table style = "width:100%;border: 1px solid black;">
   <tr style = "height:700px;border: 1px solid black;">
+  /* Row 1*/
+      /* Box for the camra output*/
     <th style = "width:50%;border: 1px solid black;">camera</th>
-    <th style="border: 1px solid black;"><table style = "width:100%;">
+    /* control panel*/
+    <th style="border: 1px solid black;">/* 3x3 grid for control panel*/<table style = "width:100%;">
+    /* Row 1*/
   <tr style = "height:233px">
+      /* Empty cell*/
     <th style = "width:33%"></th>
+    /* Forward button*/
     <th style = "width:33%"><button style="height:218px;width:90%;font-size: 50px;" onclick="send_command('forward')" ><img src = "https://i.ibb.co/vmdwnbH/up-arrow-png-27157-1-removebg-preview.png" width="200" height="200"></button></th>
+    /* Empty cell*/
     <th></th>
   </tr>
   <tr style = "height:233px">
+  /* Row 2*/
+      /* Left turn button*/
     <td><p><button style="height:217px;width:90%;font-size: 55px;" onclick="send_command('left')"><img src="https://i.ibb.co/bvkrDhz/image-2.png" width="200" height="200"></button></p></td>
+    /* Stop and play button (in the same cell)*/
     <td><p><button style="height:217px;width:45%;font-size: 50px;" onclick="send_command('stop')"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Stop_sign.png"  width="128" height="128"></button><button style="height:217px;width:45%;font-size: 50px;" onclick="send_command('play')"><img src="https://i.ibb.co/nzNB8WY/download-removebg-preview.png"  width="128" height="128"></button></p></td>
+    /* Right turn button*/
     <td><p><button style="height:217px;width:90%;font-size: 55px;" onclick="send_command('right')"><img src = "https://i.ibb.co/C6D7hnz/image.png" width="200" height="200"></button></p></td>
 
   </tr>
   <tr style = "height:233px">
-    <td><div class="slidecontainer">
-  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-  <div id="sliderValue">50</div>
-</div></td>
+  /* Row 3*/
+      /* Empty Cell*/
+    <td></td>
+    /* Move back button*/
     <td><p><button style="height:218px;width:90%;font-size: 50px;" onclick="send_command('backward')"><img src="https://i.ibb.co/6y7yBHR/image-1.png" width="200" height="200"></button></p></td>
+    /* Empty cell*/    
     <td><p></p></td></table></th>
   </tr>
   <tr style = "height:700px;border: 1px solid black;">
+    /* Row 2 of the big grid*/
+    /* Where the line overaly should be*/
     <td style="border: 1px solid black;"><p>line</p></td>
+    /* Wehere the log should be*/
     <td style="border: 1px solid black;"><p>log</p></td>
   </tr>
 

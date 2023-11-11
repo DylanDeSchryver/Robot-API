@@ -1,4 +1,4 @@
-qfrom flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 from adafruit_motorkit import MotorKit
 import time
 

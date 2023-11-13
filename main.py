@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return '''
-    /* initialize html*/
+    <!-- initialize html-->
     
             <!DOCTYPE html>
         <html lang="en" dir="ltr">
@@ -17,8 +17,8 @@ def index():
             <title>Control Panel</title>
           </head>
           <style>
-          /* CSS */
-          /* Aligns text*/
+          <!-- CSS -->
+          <!-- Aligns text-->
     h1
 {text-align: center;}
 h2
@@ -29,11 +29,11 @@ button
 {text-align: center;}
 p
 {text-align: center; font-size: large;}
- /* Sets background and text color*/
+ <!-- Sets background and text color-->
 body
   {background-color:white;
      color: black;}
- /* Sets the default table color to white*/
+ <!-- Sets the default table color to white-->
 table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
@@ -67,47 +67,47 @@ var output = document.getElementById("demo");
 
 
           <body>
-          /* creates 2x2 table*/
+          <!-- creates 2x2 table-->
 <table style = "width:100%;border: 1px solid black;">
   <tr style = "height:700px;border: 1px solid black;">
-  /* Row 1*/
-      /* Box for the camra output*/
+  <!-- Row 1-->
+      <!-- Box for the camra output-->
     <th style = "width:50%;border: 1px solid black;">camera</th>
-    /* control panel*/
-    <th style="border: 1px solid black;">/* 3x3 grid for control panel*/<table style = "width:100%;">
-    /* Row 1*/
+    <!-- control panel-->
+    <th style="border: 1px solid black;"><!-- 3x3 grid for control panel--><table style = "width:100%;">
+    <!-- Row 1-->
   <tr style = "height:233px">
-      /* Empty cell*/
+      <!-- Empty cell-->
     <th style = "width:33%"></th>
-    /* Forward button*/
+    <!-- Forward button-->
     <th style = "width:33%"><button style="height:218px;width:90%;font-size: 50px;" onclick="send_command('forward')" ><img src = "https://i.ibb.co/vmdwnbH/up-arrow-png-27157-1-removebg-preview.png" width="200" height="200"></button></th>
-    /* Empty cell*/
+    <!-- Empty cell-->
     <th></th>
   </tr>
   <tr style = "height:233px">
-  /* Row 2*/
-      /* Left turn button*/
+  <!-- Row 2-->
+      <!-- Left turn button-->
     <td><p><button style="height:217px;width:90%;font-size: 55px;" onclick="send_command('left')"><img src="https://i.ibb.co/bvkrDhz/image-2.png" width="200" height="200"></button></p></td>
-    /* Stop and play button (in the same cell)*/
+    <!-- Stop and play button (in the same cell)-->
     <td><p><button style="height:217px;width:45%;font-size: 50px;" onclick="send_command('stop')"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Stop_sign.png"  width="128" height="128"></button><button style="height:217px;width:45%;font-size: 50px;" onclick="send_command('play')"><img src="https://i.ibb.co/nzNB8WY/download-removebg-preview.png"  width="128" height="128"></button></p></td>
-    /* Right turn button*/
+    <!-- Right turn button-->
     <td><p><button style="height:217px;width:90%;font-size: 55px;" onclick="send_command('right')"><img src = "https://i.ibb.co/C6D7hnz/image.png" width="200" height="200"></button></p></td>
 
   </tr>
   <tr style = "height:233px">
-  /* Row 3*/
-      /* Empty Cell*/
+  <!-- Row 3-->
+      <!-- Empty Cell-->
     <td></td>
-    /* Move back button*/
+    <!-- Move back button-->
     <td><p><button style="height:218px;width:90%;font-size: 50px;" onclick="send_command('backward')"><img src="https://i.ibb.co/6y7yBHR/image-1.png" width="200" height="200"></button></p></td>
-    /* Empty cell*/    
+    <!-- Empty cell-->    
     <td><p></p></td></table></th>
   </tr>
   <tr style = "height:700px;border: 1px solid black;">
-    /* Row 2 of the big grid*/
-    /* Where the line overaly should be*/
+    <!-- Row 2 of the big grid-->
+    <!-- Where the line overaly should be-->
     <td style="border: 1px solid black;"><p>line</p></td>
-    /* Wehere the log should be*/
+    <!-- Wehere the log should be-->
     <td style="border: 1px solid black;"><p>log</p></td>
   </tr>
 
